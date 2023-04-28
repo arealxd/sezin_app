@@ -232,7 +232,7 @@
         </div>
       </div>
       <div class="image-container">
-        <img class="profile-image" src="src/assets/images/profile_image.svg" />
+        <img class="profile-image" src="/img/profile_image.svg" />
         <p class="log-out-button" @click="logoutAccount()">{{ $t("LOGOUT") }}</p>
       </div>
     </div>
