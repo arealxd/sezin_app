@@ -69,6 +69,8 @@
   "SIGNUP": "Sign up",
   "SOCIALMEDIA": "Social Media",
   "SPACERABBIT": "Space Rabbit",
+  "STANDARTFUNC": "Standard functions",
+  "STATISTICS": "Statistics",
   "SUPPORT": "Support",
   "TASKSCOMPLETED": "tasks completed",
   "THOUSANDBATTLES": "It is better to conquer yourself than to win a thousand battles",
@@ -77,14 +79,14 @@
   "UPON": "There’s no charge upon registration",
   "VIEWALL": "View all",
   "WEBINAR": "A webinar is an online training group session conducted in real time using the Internet. On which you can pump the knowledge and skills of the audience, teach it something new. The webinar format may vary. Most often they hold lectures, business meetings, refresher courses, present products.On which you can pump the knowledge and skills of the audience, teach it something new. The webinar format may vary. Most often they hold lectures, business meetings, refresher courses, present products.",
+  "WEBINARS": "Webinars",
   "WEEKLYSUBSCRIPTION": "Standart subscription",
   "WELCOME": "Welcome to Sezin",
   "WELCOMEBACK": "Welcome back!",
   "WORKFOR": "work for and promote the preservation and safeguarding of good mental health",
   "WORKFOR2": "work for, promote and provide for the well-being, interests and rights of people who have mental ill health",
+  "WORKFOR3": "through our work, we hope to create a society that values and prioritizes mental health, where individuals feel supported and empowered to seek the help they need ",
   "WRONGDATA": "Wrong email or password",
   "YOUAREAMAZING": "You are amazing!",
-  "YOUAREAWESOME": "You are awesome!",
-  "STATISTICS": "Statistics",
-  "STANDARTFUNC": "Standard functions"
+  "YOUAREAWESOME": "You are awesome!"
 }

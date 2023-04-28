@@ -34,19 +34,19 @@
       </div>
       <div class="second-data block" v-if="feelings[selectedItemIndex]">
         <div>
-          <div class="image-first" @click="showArticle(feelings[selectedItemIndex].article)">
+          <div class="image-first" @click="showArticle(feelings[selectedItemIndex]?.articles[0])">
             <img class="inner-image" src="@/assets/images/article.svg" />
-            <p class="inner-title">{{ feelings[selectedItemIndex].article.title }}</p>
+            <p class="inner-title">{{ feelings[selectedItemIndex]?.articles[0]?.title }}</p>
           </div>
-          <div class="image-second" @click="showVideo(feelings[selectedItemIndex].video)">
+          <div class="image-second" @click="showVideo(feelings[selectedItemIndex]?.videos[0])">
             <img class="inner-image" src="@/assets/images/video.svg" />
-            <p class="inner-title">{{ feelings[selectedItemIndex].video.title }}</p>
+            <p class="inner-title">{{ feelings[selectedItemIndex]?.videos[0]?.title }}</p>
           </div>
         </div>
         <img
           src="@/assets/images/story.svg"
           class="image-first story-image"
-          @click="showExercises(feelings[selectedItemIndex].exercises)"
+          @click="showExercises(feelings[selectedItemIndex]?.exercises)"
         />
       </div>
     </div>
@@ -103,7 +103,8 @@ export default {
       api.feeling
         .getAllFeelings()
         .then((response) => {
-          this.feelings = response.data
+          this.feelings = response.data.data
+          console.log(this.feelings)
           this.isLoading = false
         })
         .catch(() => {

@@ -138,7 +138,7 @@
             </svg>
           </div>
           <div class="task-count-block">
-            <p class="task-finish" @click="this.isShowCreateTask = true">{{ $t("CREATETASK") }}</p>
+            <!-- <p class="task-finish" @click="this.isShowCreateTask = true">{{ $t("CREATETASK") }}</p> -->
           </div>
         </div>
         <div class="tasks-container" v-if="total !== 0">
@@ -236,6 +236,50 @@
         <p class="log-out-button" @click="logoutAccount()">{{ $t("LOGOUT") }}</p>
       </div>
     </div>
+    <div class="statistics">
+      <div class="statistics__title">
+        <p class="statistics__title-text">Statistics</p>
+        <div class="statistics__title-year">
+          <svg
+            @click="minusYear"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 6L9 12L15 18"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p>{{ statisticsYear }}</p>
+          <svg
+            @click="plusYear"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 6L15 12L9 18"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="statistics__table">
+        <img src="/img/statistics.png" alt="" />
+        <p class="statistics__table-point">{{ point.toFixed(1) }}<br />Points</p>
+      </div>
+    </div>
   </div>
 
   <div id="pricing">
@@ -304,6 +348,8 @@ export default {
       inProgress: 0,
       currentTaskIndex: 0,
       isShowCreateTask: false,
+      statisticsYear: 2023,
+      point: 4.5,
     }
   },
   mounted() {
@@ -371,24 +417,59 @@ export default {
       localStorage.removeItem("authorized")
       this.$router.push("/")
     },
+    minusYear() {
+      this.statisticsYear--
+      this.point = this.point - 0.1
+    },
+    plusYear() {
+      this.statisticsYear++
+      this.point = this.point + 0.1
+    },
   },
 }
 </script>
 
 <style scoped>
+.statistics__title-year {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.statistics__title-year p {
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+}
+.statistics__title-year svg {
+  cursor: pointer;
+}
+.statistics__title-text {
+  font-weight: 700;
+  font-size: 28px;
+  color: #b300d7;
+}
+.statistics__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.statistics {
+  padding: 0px 270px;
+  margin-top: 70px;
+}
 #pricing {
   width: 989px;
   margin: 100px auto;
   font-family: "Open Sans", Helvetica;
-  padding-top: 70px;
+  padding-top: 500px;
   display: flex;
   justify-content: center;
 }
 .price_card button {
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 .price_card button:hover {
-  transition: all 0.3s ease;
   background: rgb(163, 44, 153);
 }
 .price_card {
@@ -404,13 +485,13 @@ export default {
   color: rgb(255, 255, 255);
 }
 .alpha .header {
-  background: rgb(245, 166, 35);
+  background: linear-gradient(178.18deg, #fd749b -13.56%, #281ac8 158.3%);
 }
 .bravo .header {
   background: rgb(246, 77, 77);
 }
 .charlie .header {
-  background: rgb(48, 219, 181);
+  background: linear-gradient(178.18deg, #db2156 -13.56%, #004fd6 158.3%);
 }
 .price {
   width: 100%;
@@ -459,13 +540,13 @@ button {
   margin: 20px auto 35px;
 }
 .alpha button {
-  background: rgb(245, 166, 35);
+  background: rgb(175, 9, 162);
 }
 .bravo button {
   background: rgb(246, 77, 77);
 }
 .charlie button {
-  background: rgb(48, 219, 181);
+  background: rgb(205, 0, 219);
 }
 .tip {
   font-family: "Indie Flower";
@@ -675,5 +756,25 @@ button {
   background: rgb(255, 255, 255);
   color: rgb(254, 0, 0);
   border: rgb(254, 0, 0) solid 1px;
+}
+.statistics__table {
+  display: flex;
+  justify-content: center;
+  margin-top: -5px;
+  position: relative;
+}
+.statistics__table-point {
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 40px;
+  background: rgba(29, 30, 64, 0.86);
+  box-shadow: 0px 8px 40px rgba(73, 28, 100, 0.2);
+  border-radius: 8px;
+  max-height: 40px;
+  position: absolute;
+  top: 95px;
+  right: 235px;
 }
 </style>

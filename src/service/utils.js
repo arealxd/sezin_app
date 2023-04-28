@@ -13,9 +13,9 @@ if (auth_token) {
 }
 
 const errorHandler = (error) => {
-  const { status } = errorHandler.response
+  const { status } = errorHandler.response || {}
   if ($storage.local_storage.get("auth_token") || status === ERROR_STATUSES.NOT_AUTHORIZED) {
-    $storage.local_storage.remove("auth_token")
+    // $storage.local_storage.remove("auth_token")
     delete instance.defaults.headers.common.Authorization
   }
   throw error

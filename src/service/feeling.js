@@ -30,7 +30,7 @@ export default {
     })
   },
   findAllArticles() {
-    return request("get", "/feeling/articles").then((response) => {
+    return request("get", "/article").then((response) => {
       return response
     })
   },

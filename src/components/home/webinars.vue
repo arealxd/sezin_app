@@ -5,7 +5,7 @@
     <p class="hint">
       {{ $t("WEBINAR") }}
     </p>
-    <p class="view-all">{{ $t("VIEWALL") }}</p>
+    <!-- <p class="view-all">{{ $t("VIEWALL") }}</p> -->
     <div style="width: 100%; padding-top: 50px; display: none">
       <img src="@/assets/images/web_first.svg" />
       <img src="@/assets/images/web_second.svg" class="middle" />
@@ -13,33 +13,56 @@
     </div>
     <div class="cards">
       <div class="cards__card-article">
-        <p class="cards__card-category">article</p>
-        <p class="cards__card-title">How to start thinking positively?</p>
+        <img src="/img/webinar1.jpg" alt="" />
+        <p>Anxiety Management Strategies Under Uncertainty</p>
       </div>
-      <div class="cards__card-article story">
-        <p class="cards__card-category">story</p>
-        <p class="cards__card-title">Yoga to reduce fatigue</p>
+      <div class="cards__card-article">
+        <img src="/img/webinar2.jpg" alt="" />
+        <p>Meditation for Beginners: How to Improve Your Mental Health</p>
       </div>
-      <div class="cards__card-article video">
-        <p class="cards__card-category">video</p>
-        <svg
-          width="59"
-          height="68"
-          viewBox="0 0 59 68"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            opacity="0.7"
-            d="M58.5 33.134C59.1667 33.5189 59.1667 34.4811 58.5 34.866L1.5 67.775C0.833329 68.1599 -3.2206e-06 67.6788 -3.18695e-06 66.909L-3.09959e-07 1.09103C-2.7631e-07 0.321228 0.833332 -0.159895 1.5 0.225005L58.5 33.134Z"
-            fill="white"
-          />
-        </svg>
-        <p class="cards__card-title">You are not lazy, bored, or unmotivated</p>
+      <div class="cards__card-article">
+        <img src="/img/webinar3.jpg" alt="" />
+        <p>
+          Psychological support in difficult situations: how to help yourself and your loved ones
+        </p>
       </div>
     </div>
     <div class="mobile_app">
-      <p>{{ $t("MOBILEAPPS") }}</p>
+      <div class="mobile_app-download">
+        <p class="mobile_app-download-text">Download our app</p>
+        <svg
+          width="50"
+          height="8"
+          viewBox="0 0 50 8"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="3.5"
+            y1="4.21973"
+            x2="46.5"
+            y2="4.21973"
+            stroke="url(#paint0_linear_10_1119)"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_10_1119"
+              x1="27.5"
+              y1="7.56232"
+              x2="27.5011"
+              y2="9.33559"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#FD749B" />
+              <stop offset="1" stop-color="#281AC8" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <p class="mobile_app-description">{{ $t("MOBILEAPPS") }}</p>
       <div class="apps">
         <img
           @click="openInNewTab('https://www.apple.com/ru/app-store/')"
@@ -95,9 +118,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 20px;
+  padding-top: 80px;
   margin-top: 50px;
 }
-.mobile_app p {
+.mobile_app-description {
   font-weight: 400;
   font-size: 18px;
   line-height: 40px;
@@ -111,14 +135,15 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
-  gap: 15px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  gap: 30px;
 }
 .apple {
-  max-width: 85px;
+  max-width: 150px;
 }
 .android {
-  max-width: 100px;
+  max-width: 150px;
 }
 .content {
   width: 84%;
@@ -149,10 +174,9 @@ export default {
   color: #4e4e65;
   font-size: 22px;
   line-height: 33px;
-  margin-top: 50px;
-  max-width: 600px;
+  max-width: 750px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .view-all {
   width: max-content;
@@ -202,66 +226,50 @@ img {
   align-items: center;
   gap: 45px;
   justify-content: center;
-  margin-top: 90px;
+  margin-top: 50px;
 }
-.cards__card-category {
-  font-weight: 500;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  color: #7474dd;
-  padding: 5px 10px;
-  border: 1px solid #7474dd;
-  border-radius: 20px;
-  margin-bottom: 0 auto;
-  margin-right: 0 auto;
-  width: max-content;
-}
-.cards__card-title {
-  font-weight: 500;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  padding: 4px 39px 4px 18px;
-  width: max-content;
-  max-width: 150px;
-  background: #5353c9;
-  border-radius: 20px;
-  text-align: left;
-  position: absolute;
-  bottom: 10px;
+.cards__card-article img {
+  width: 100%;
   height: 100%;
-  max-height: 50px;
+  border-radius: 20px;
+  object-fit: cover;
+  filter: brightness(70%);
+  transition: all 0.3s ease;
+}
+.cards__card-article p {
+  font-weight: 600;
+  font-size: 16px;
+  color: #5f5f5f;
+  margin-top: 10px;
+  text-align: left;
+  padding: 0px 5px;
 }
 .cards__card-article {
-  width: 386px;
-  height: 413px;
-  background: linear-gradient(235.64deg, #ffeacc 0%, #ffcdec 95.42%);
+  width: 350px;
+  height: 300px;
   border-radius: 20px;
   padding: 10px;
-  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.story {
-  background: linear-gradient(235.64deg, #7474dd 0%, #ffcdec 95.42%);
+.cards__card-article:hover img {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  filter: brightness(100%);
 }
-.story .cards__card-category {
-  color: #ffeacc;
-  border: 1px solid #ffeacc;
+.mobile_app-download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
 }
-.video {
-  background: linear-gradient(54.16deg, #ccd0ff 2.58%, #ffcdec 95.61%);
-}
-.video .cards__card-category {
-  color: #c484b0;
-  border: 1px solid #c484b0;
-}
-.video svg {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.mobile_app-download-text {
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 40px;
+  text-align: center;
+  color: #d2108b;
+  margin: 0 auto;
+  font-weight: 600;
 }
 </style>

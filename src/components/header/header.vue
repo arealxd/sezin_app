@@ -37,8 +37,8 @@
     </select>
     <div class="user-data-container position">
       <div v-if="fullName && auth == 'authorized'" class="user-side">
-        <div class="notification-container" style="display: block">
-          <p>5</p>
+        <div class="notification-container">
+          <p></p>
           <svg
             width="14"
             height="22"
@@ -101,7 +101,7 @@ export default {
         this.$t("FINDHELP"),
         this.$t("ARTICLES"),
         this.$t("CONTACTUS"),
-        "Self-Improvement",
+        // this.$t("WEBINARS"),
       ],
       isLoginOpen: false,
       isForgotPasswordOpen: false,
@@ -121,7 +121,8 @@ export default {
         this.$t("FINDHELP"),
         this.$t("ARTICLES"),
         this.$t("CONTACTUS"),
-        "Self-Improvement",
+        // this.$t("WEBINARS"),
+        ,
       ]
     },
     registerprops: function (val) {
@@ -235,8 +236,8 @@ export default {
 }
 .buttons-container p {
   color: black;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 15px;
+  margin-right: 15px;
   width: max-content;
   font-size: 15px;
   font-family: Poppins-Bold, system-ui;

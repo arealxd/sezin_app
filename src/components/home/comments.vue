@@ -63,9 +63,9 @@ export default {
     }
   },
   mounted() {
-    api.message.findAllMessages().then((response) => {
-      this.messages = response.data
-    })
+    // api.message.findAllMessages().then((response) => {
+    //   this.messages = response.data
+    // })
   },
   methods: {
     showLeaveMessage: function () {

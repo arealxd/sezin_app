@@ -15,10 +15,13 @@
             <li class="hint">
               {{ $t("WORKFOR2") }}
             </li>
+            <li class="hint">
+              {{ $t("WORKFOR3") }}
+            </li>
           </ul>
-          <div class="get-started">
+          <!-- <div class="get-started">
             <p>{{ $t("DISCOVER") }}</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

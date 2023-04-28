@@ -4,30 +4,33 @@
       <div class="in-line">
         <p class="block-title">article</p>
         <div class="middle–container">
-          <p>{{article.title}}</p>
+          <p>{{ article?.title }}</p>
         </div>
       </div>
-      <div v-if="article.description.includes('<p>')">
-        <div class="html-content" v-html="article.description"></div>
+      <div v-if="checkIncludes('<p>')">
+        <div class="html-content" v-html="article?.description"></div>
       </div>
       <div v-else>
-        <p class="content-text">{{article.description}}</p>
+        <p class="content-text">{{ article?.description }}</p>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "single-article-component",
-  props: {
-    article: Object
-  }
+<script setup>
+import { defineProps } from "vue"
+const props = defineProps({
+  article: Object,
+})
+
+console.log(props.article)
+
+const checkIncludes = (description) => {
+  return description.includes("<p>")
 }
 </script>
 
 <style scoped>
-
 .content {
   min-width: 90%;
   margin-left: auto;
@@ -56,8 +59,8 @@ export default {
 }
 .block-title {
   width: max-content;
-  color: #7474DD;
-  border: 0.5px solid #7474DD;
+  color: #7474dd;
+  border: 0.5px solid #7474dd;
   border-radius: 20px;
   padding: 7px 16px;
   font-size: 16px;
@@ -76,20 +79,21 @@ export default {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-.middle–container>p, .middle–container>svg {
+.middle–container > p,
+.middle–container > svg {
   display: inline-block;
   vertical-align: middle;
 }
-.middle–container>svg {
+.middle–container > svg {
   margin-left: 10px;
   width: 34px;
   height: 34px;
   cursor: pointer;
 }
-.middle–container>p {
+.middle–container > p {
   font-size: 24px;
   font-family: Poppins-Light, system-ui;
-  color: #1C194E;
+  color: #1c194e;
 }
 .close-button {
   cursor: pointer;
@@ -101,9 +105,10 @@ export default {
 .html-content {
   text-align: start;
 }
-.content-text, .html-content>>>p {
+.content-text,
+.html-content >>> p {
   margin-top: 10px;
-  color: #1C194E;
+  color: #1c194e;
   font-size: 16px;
   font-family: Poppins-Regular, system-ui;
   line-height: 160%;
@@ -111,8 +116,8 @@ export default {
   display: block;
   text-align: left;
 }
-.html-content>>>h1 {
-  color: #1C194E;
+.html-content >>> h1 {
+  color: #1c194e;
   font-size: 20px;
   font-family: Poppins-SemiBold, system-ui;
 }

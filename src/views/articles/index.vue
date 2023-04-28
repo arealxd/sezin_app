@@ -28,6 +28,7 @@ export default {
   mounted() {
     api.feeling.findAllArticles().then((response) => {
       this.articles = response.data
+      console.log(this.articles)
       this.isLoaded = true
     })
   },

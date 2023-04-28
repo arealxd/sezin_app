@@ -12,7 +12,7 @@
     v-on:showExercises="showExercises"
   />
   <comments-component v-on:showLeaveMessage="isShowMessage = true" id="comments" />
-  <webinars-component />
+  <webinars-component id="webinars" />
   <footer-component id="contacts" />
 </template>
 
