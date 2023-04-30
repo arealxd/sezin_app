@@ -12,19 +12,49 @@
       <img src="@/assets/images/web_third.svg" />
     </div>
     <div class="cards">
-      <div class="cards__card-article">
-        <img src="/img/webinar1.jpg" alt="" />
-        <p>Anxiety Management Strategies Under Uncertainty</p>
+      <div class="arrow-webinar" @click="previousWebinar">
+        <svg
+          width="9"
+          height="14"
+          viewBox="0 0 9 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M3.41421 7L8.70711 12.2929L7.29289 13.7071L0.585787 7L7.29289 0.292893L8.70711 1.70711L3.41421 7Z"
+            fill="white"
+          />
+        </svg>
       </div>
       <div class="cards__card-article">
-        <img src="/img/webinar2.jpg" alt="" />
-        <p>Meditation for Beginners: How to Improve Your Mental Health</p>
+        <img :src="'http://157.230.100.45/' + webinars[firstWebinarIndex]?.image" alt="" />
+        <p>{{ webinars[firstWebinarIndex]?.title }}</p>
       </div>
       <div class="cards__card-article">
-        <img src="/img/webinar3.jpg" alt="" />
-        <p>
-          Psychological support in difficult situations: how to help yourself and your loved ones
-        </p>
+        <img :src="'http://157.230.100.45/' + webinars[secondWebinarIndex]?.image" alt="" />
+        <p>{{ webinars[secondWebinarIndex]?.title }}</p>
+      </div>
+      <div class="cards__card-article">
+        <img :src="'http://157.230.100.45/' + webinars[thirdWebinarIndex]?.image" alt="" />
+        <p>{{ webinars[thirdWebinarIndex]?.title }}</p>
+      </div>
+      <div class="arrow-webinar" @click="nextWebinar">
+        <svg
+          width="9"
+          height="14"
+          viewBox="0 0 9 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M5.58579 7L0.292892 1.70711L1.70711 0.292892L8.41421 7L1.70711 13.7071L0.292892 12.2929L5.58579 7Z"
+            fill="white"
+          />
+        </svg>
       </div>
     </div>
     <div class="mobile_app">
@@ -86,12 +116,68 @@
 </template>
 
 <script>
+import axios from "axios"
 import { useI18n } from "vue-i18n"
+import { ref } from "vue"
 
 export default {
   setup() {
+    const webinars = ref([])
+    axios.get("http://157.230.100.45/vebinar").then((res) => {
+      webinars.value = res.data
+    })
+
+    const firstWebinarIndex = ref(0)
+    const secondWebinarIndex = ref(1)
+    const thirdWebinarIndex = ref(2)
+
+    const previousWebinar = () => {
+      if (firstWebinarIndex.value === 0) {
+        firstWebinarIndex.value = webinars.value.length - 1
+      } else {
+        firstWebinarIndex.value--
+      }
+      if (secondWebinarIndex.value === 0) {
+        secondWebinarIndex.value = webinars.value.length - 1
+      } else {
+        secondWebinarIndex.value--
+      }
+      if (thirdWebinarIndex.value === 0) {
+        thirdWebinarIndex.value = webinars.value.length - 1
+      } else {
+        thirdWebinarIndex.value--
+      }
+    }
+
+    const nextWebinar = () => {
+      if (firstWebinarIndex.value === webinars.value.length - 1) {
+        firstWebinarIndex.value = 0
+      } else {
+        firstWebinarIndex.value++
+      }
+      if (secondWebinarIndex.value === webinars.value.length - 1) {
+        secondWebinarIndex.value = 0
+      } else {
+        secondWebinarIndex.value++
+      }
+      if (thirdWebinarIndex.value === webinars.value.length - 1) {
+        thirdWebinarIndex.value = 0
+      } else {
+        thirdWebinarIndex.value++
+      }
+    }
+
     const { t, locale } = useI18n({ useScope: "global" })
-    return { t, locale }
+    return {
+      t,
+      locale,
+      webinars,
+      firstWebinarIndex,
+      secondWebinarIndex,
+      thirdWebinarIndex,
+      previousWebinar,
+      nextWebinar,
+    }
   },
   name: "webinars-component",
   methods: {
@@ -103,6 +189,19 @@ export default {
 </script>
 
 <style scoped>
+.arrow-webinar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 18px;
+  background: #9347b2;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.arrow-webinar:hover {
+  background: #570091;
+}
 .screen-mobile {
   background: linear-gradient(178.18deg, #fd749b -13.56%, #281ac8 158.3%);
   display: flex;

@@ -76,11 +76,13 @@ export default {
         api.message
           .sendMessage({
             data: {
-              message: this.message,
+              title: this.message,
+              description: this.message,
             },
           })
           .then(() => {
             this.close()
+            this.$emit("sendedMessage")
           })
           .catch(() => {
             this.close()

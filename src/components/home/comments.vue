@@ -30,9 +30,9 @@
         <p class="content-text">{{ $t("YOUAREAWESOME") }}</p>
       </div>
       <div class="comment-container" v-for="message in messages" :key="message">
-        <p class="user-name">{{ message.fullName }}</p>
+        <p class="user-name">{{ $t("UNKNOWNUSER") }}</p>
         <p class="sends-text">{{ $t("SENDMESSAGE") }}</p>
-        <p class="content-text">{{ message.message }}</p>
+        <p class="content-text">{{ message.title }}</p>
       </div>
       <div class="comment-container" style="background: none; align-self: center">
         <p class="send-button" @click="showLeaveMessage">{{ $t("LEAVEMESSAGE") }}</p>
@@ -49,6 +49,7 @@ import { useI18n } from "vue-i18n"
 export default {
   setup() {
     const { t, locale } = useI18n({ useScope: "global" })
+
     return { t, locale }
   },
   name: "comments-component",
@@ -63,11 +64,16 @@ export default {
     }
   },
   mounted() {
-    // api.message.findAllMessages().then((response) => {
-    //   this.messages = response.data
-    // })
+    api.message.findAllMessages().then((response) => {
+      this.messages = response.data
+    })
   },
   methods: {
+    childMethod() {
+      api.message.findAllMessages().then((response) => {
+        this.messages = response.data
+      })
+    },
     showLeaveMessage: function () {
       this.$emit("showLeaveMessage")
     },

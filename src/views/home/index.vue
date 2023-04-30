@@ -2,7 +2,11 @@
   <article-component v-if="isShowArticle" :article="article" v-on:close="hideArticle" />
   <video-component v-if="isShowVideo" :video="video" v-on:close="hideVideo" />
   <exercise-component v-if="isShowExercise" :exercises="exercises" v-on:close="hideExercises" />
-  <leave-message-component v-if="isShowMessage" v-on:closeMessage="isShowMessage = false" />
+  <leave-message-component
+    v-if="isShowMessage"
+    v-on:sendedMessage="messageUpdate"
+    v-on:closeMessage="isShowMessage = false"
+  />
   <header-component :registerprops="showRegister" :selected-tab-index="selectedTab" />
   <hero-component @showregister="test" id="hero" />
   <welcome-component id="welcome" />
@@ -11,7 +15,11 @@
     v-on:showVideo="showVideo"
     v-on:showExercises="showExercises"
   />
-  <comments-component v-on:showLeaveMessage="isShowMessage = true" id="comments" />
+  <comments-component
+    v-on:showLeaveMessage="isShowMessage = true"
+    ref="CommentsComponent"
+    id="comments"
+  />
   <webinars-component id="webinars" />
   <footer-component id="contacts" />
 </template>
@@ -71,6 +79,11 @@ export default {
     )
   },
   methods: {
+    messageUpdate() {
+      this.$nextTick(() => {
+        this.$refs.CommentsComponent.childMethod()
+      })
+    },
     test() {
       this.showRegister = this.showRegister + 1
       console.log("test", this.showRegister)

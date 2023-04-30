@@ -2,9 +2,9 @@ import { login, request } from "@/service/utils"
 
 export default {
   findAllMessages() {
-    // return request('get', '/message').then((response) => {
-    //     return response;
-    // });
+    return request("get", "/feedback").then((response) => {
+      return response
+    })
   },
   /**
    *
@@ -15,8 +15,8 @@ export default {
    * @returns {Promise}
    */
   sendMessage(params = {}) {
-    // return request('post', '/message', params).then((response) => {
-    //     return response;
-    // });
+    return request("post", "/feedback", params).then((response) => {
+      return response
+    })
   },
 }
