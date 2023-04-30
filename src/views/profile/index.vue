@@ -306,7 +306,7 @@
       </ul>
       <button>{{ $t("TRYFORFREE") }}</button>
     </div> -->
-    <div class="price_card charlie">
+    <div class="price_card charlie" v-if="!buyForm">
       <div class="header">
         <span class="price">9 990₸</span>
         <span class="name">{{ $t("MONTHLYSUBSCRIPTION") }}</span>
@@ -317,8 +317,41 @@
         <li>{{ $t("EBOOKS") }}</li>
         <li>{{ $t("PODCAST") }}</li>
       </ul>
-      <button>{{ $t("TRYFORFREE") }}</button>
+      <button @click="buyForm = true">{{ $t("TRYFORFREE") }}</button>
     </div>
+    <form v-if="buyForm" @submit.prevent="buy_post" class="buy-form">
+      <div class="form-inputs">
+        <input
+          type="text"
+          class="buy-form__num"
+          v-model="card_num"
+          required
+          placeholder="Card number"
+        />
+        <input
+          type="text"
+          class="buy-form__date"
+          v-model="card_date"
+          required
+          placeholder="Expiration date"
+        />
+        <input type="text" class="buy-form__cvv" v-model="card_cvv" required placeholder="CVV" />
+      </div>
+      <div class="form-inputs">
+        <input
+          type="text"
+          class="buy-form__num owner"
+          v-model="card_owner"
+          required
+          placeholder="Owner"
+        />
+        <img src="/img/visa.png" alt="" />
+      </div>
+      <button class="courses__preview-info-btns-buy" type="submit" style="margin-top: 15px">
+        Buy now
+      </button>
+      <p class="success_buy" v-if="successBuy">Purchased successfully</p>
+    </form>
   </div>
 
   <footer-component />
@@ -330,11 +363,34 @@ import api from "@/service/api"
 import FooterComponent from "@/components/footer/footer.vue"
 import CreateTaskComponent from "@/components/alert/create_task.vue"
 import { useI18n } from "vue-i18n"
+import { ref } from "vue"
 
 export default {
   setup() {
+    const buyed = ref(false)
+
+    const buyForm = ref(false)
+    const successBuy = ref(false)
+
+    const card_num = ref("")
+    const card_date = ref("")
+    const card_cvv = ref("")
+    const card_owner = ref("")
+
+    const buy_post = () => {
+      successBuy.value = true
+      setTimeout(() => {
+        buyed.value = true
+        buyForm.value = false
+        card_num.value = ""
+        card_date.value = ""
+        card_cvv.value = ""
+        card_owner.value = ""
+      }, 2000)
+    }
+
     const { t, locale } = useI18n({ useScope: "global" })
-    return { t, locale }
+    return { t, locale, buy_post, buyForm, successBuy, buyed }
   },
   name: "index",
   components: { CreateTaskComponent, FooterComponent, HeaderComponent },
@@ -776,5 +832,83 @@ button {
   position: absolute;
   top: 95px;
   right: 235px;
+}
+
+.buy-form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 25px;
+}
+.form-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.buy-form__num,
+.buy-form__date,
+.buy-form__cvv {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000000;
+  padding: 5px 10px;
+  background: transparent;
+  outline: none;
+  margin: 0 auto;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+}
+.buy-form__date {
+  width: 70%;
+}
+.buy-form__cvv {
+  width: 30%;
+}
+.form-inputs input {
+  color: #000000;
+}
+.form-inputs input::placeholder {
+  color: #383838;
+  font-weight: 500;
+  font-size: 16px;
+}
+.form-inputs img {
+  width: 130px;
+}
+.owner {
+  text-transform: uppercase;
+}
+.owner::placeholder {
+  text-transform: none;
+}
+.success_buy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: #00cb07;
+  margin-top: -30px;
+}
+.courses__preview-info-btns-buy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0px;
+  background: #028602;
+  border-radius: 30px;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.courses__preview-info-btns-buy:hover {
+  background: #77006d;
 }
 </style>

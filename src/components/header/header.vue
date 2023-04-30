@@ -7,7 +7,7 @@
   />
   <sign-up-component v-if="isSignUpOpen" v-on:startLogin="openLogin" v-on:close="closeAll" />
   <div class="content">
-    <div class="logo-container position">
+    <div class="logo-container position" @click="reload">
       <router-link to="/">
         <img src="@/assets/images/logo.svg" />
         <p>Sezin</p>
